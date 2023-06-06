@@ -1,9 +1,11 @@
 {
   "name": "@v4fire/storybook-framework-webpack5",
+  "type": "module",
   "version": "0.1.0",
   "description": "Storybook framework for the V4Fire with webpack5 builder",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "tsc --noEmit",
+    "build": "node --loader ts-node/esm bundle.ts"
   },
   "keywords": [
     "Storybook",
@@ -53,6 +55,8 @@
   },
   "devDependencies": {
     "@v4fire/client": "^4.0.0-beta.4",
+    "ts-node": "10.9.1",
+    "tsup": "6.7.0",
     "typescript": "4.6.2",
     "webpack": "5.82.1"
   },
