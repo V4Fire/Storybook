@@ -1,0 +1,7 @@
+{
+  "workspaces": [
+    "packages/frameworks/v4fire-webpack5"
+  ],
+  "license": "MIT",
+  "packageManager": "yarn@3.6.0"
+}
