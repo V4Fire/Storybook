@@ -19,7 +19,8 @@
 Follow the prompts after running this command in your V4Fire project's root directory:
 
 ```bash
-npx storybook@latest init --type undetected
+npx storybook@latest init --type html
+yarn add @v4fire/storybook-framework-webpack5
 ```
 
 [More on getting started with Storybook](https://storybook.js.org/docs/react/get-started/install)
