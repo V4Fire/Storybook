@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "paths": {
+      "*": [
+        "../../../node_modules/@v4fire/client/src/*",
+        "../../../node_modules/@v4fire/core/src/*"
+      ],
+      "@v4fire/client/*": [
+        "../../../node_modules/@v4fire/client/src/*"
+      ],
+      "@v4fire/core/*": [
+        "../../../node_modules/@v4fire/core/src/*"
+      ],
+    },
+    "baseUrl": ".",
+  }
+}
