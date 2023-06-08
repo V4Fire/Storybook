@@ -1,14 +1,12 @@
 import type { StoryContext as StoryContextBase, WebRenderer } from '@storybook/types';
 import { Constructor } from 'type-fest';
 
-export type { RenderContext } from '@storybook/types';
-
 export interface ShowErrorArgs {
   title: string;
   description: string;
 }
 
-export type StoryFnV4FireReturnType = string | Node;
+export type StoryFnV4FireReturnType = Node;
 
 export type StoryContext = StoryContextBase<V4FireRenderer>;
 
