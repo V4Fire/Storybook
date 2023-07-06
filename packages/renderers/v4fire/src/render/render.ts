@@ -2,7 +2,7 @@
 import type { ArgsStoryFn } from '@storybook/types';
 import type { V4FireRenderer } from '../types';
 
-const isSlotRegex = /^slot:(.*)$/;
+const isSlotRegex = /^slot-(.*)$/;
 
 const render: ArgsStoryFn<V4FireRenderer, Dictionary<any>> = (props, context) => {
   const { id, component: componentOrName } = context;
@@ -12,6 +12,7 @@ const render: ArgsStoryFn<V4FireRenderer, Dictionary<any>> = (props, context) =>
     );
   }
 
+  // Set slot attributes as children
   const {children = {}, ...attrs} = props;
 
   if (Object.isPlainObject(children)) {
@@ -21,6 +22,7 @@ const render: ArgsStoryFn<V4FireRenderer, Dictionary<any>> = (props, context) =>
       if (matches) {
         const slotName = matches[1];
         children[slotName] = value;
+        delete attrs[key];
       }
     });
   }
