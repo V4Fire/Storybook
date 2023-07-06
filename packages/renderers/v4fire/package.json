@@ -56,14 +56,14 @@
   "devDependencies": {
     "@types/node": "^18.16.0",
     "@types/webpack-env": "1.18.1",
-    "@v4fire/client": "^4.0.0-beta.4",
+    "@v4fire/client": "git+https://github.com/v4fire/client#st-4697/storybook-prebuild",
     "@v4fire/core": "^4.0.0-alpha.4",
     "ts-node": "10.9.1",
     "tsup": "6.7.0",
     "typescript": "4.6.2"
   },
   "peerDependencies": {
-    "@v4fire/client": "^4.0.0-beta.4",
+    "@v4fire/client": "^4.0.0-beta.7",
     "@v4fire/core": "^4.0.0-alpha.4"
   },
   "engines": {

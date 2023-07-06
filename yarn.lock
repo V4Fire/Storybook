@@ -2979,9 +2979,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@v4fire/client@npm:^4.0.0-beta.4":
-  version: 4.0.0-beta.4
-  resolution: "@v4fire/client@npm:4.0.0-beta.4"
+"@v4fire/client@git+https://github.com/v4fire/client#st-4697/storybook-prebuild":
+  version: 4.0.0-beta.7
+  resolution: "@v4fire/client@https://github.com/v4fire/client.git#commit=227d2f12eb69f7686fac6f23e5f6ca91b89472eb"
   dependencies:
     "@babel/core": 7.17.5
     "@babel/helpers": 7.17.7
@@ -3216,7 +3216,7 @@ __metadata:
       optional: true
     webpack-cli:
       optional: true
-  checksum: d4c786e52b1e4b9b65d5a1a59d7a7a4c3b61aa25562b100908501d5ac21f4ceac987e05e055aadf1fd902331defc2ccbc5ef495ade54efe8c16c2ddc95d84413
+  checksum: 1e7eba1dc2cf6cb4d8ac2b72c30188a3aa3ed2a5c9b5c099fe3dbafd97fc9b5a397f009dc0ccbd235a4e9d36736e2acf805c8bcf329913e33a66fae44d842bff
   languageName: node
   linkType: hard
 
@@ -3387,7 +3387,7 @@ __metadata:
     "@storybook/core-common": 7.0.18
     "@storybook/node-logger": 7.0.18
     "@types/node": ^18.16.0
-    "@v4fire/client": ^4.0.0-beta.4
+    "@v4fire/client": "git+https://github.com/v4fire/client#st-4697/storybook-prebuild"
     ts-node: 10.9.1
     tsup: 6.7.0
     typescript: 4.6.2
@@ -3395,8 +3395,7 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.17.5
     "@storybook/addon-actions": ^7.0.0
-    "@v4fire/client": ^4.0.0-beta.4
-    "@v4fire/storybook": 0.1.0
+    "@v4fire/client": ^4.0.0-beta.7
     webpack: ^5.82.1
   languageName: unknown
   linkType: soft
@@ -3412,14 +3411,14 @@ __metadata:
     "@storybook/types": 7.0.18
     "@types/node": ^18.16.0
     "@types/webpack-env": 1.18.1
-    "@v4fire/client": ^4.0.0-beta.4
+    "@v4fire/client": "git+https://github.com/v4fire/client#st-4697/storybook-prebuild"
     "@v4fire/core": ^4.0.0-alpha.4
     ts-node: 10.9.1
     tsup: 6.7.0
     type-fest: 3.11.1
     typescript: 4.6.2
   peerDependencies:
-    "@v4fire/client": ^4.0.0-beta.4
+    "@v4fire/client": ^4.0.0-beta.7
     "@v4fire/core": ^4.0.0-alpha.4
   languageName: unknown
   linkType: soft
