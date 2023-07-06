@@ -1,17 +1,40 @@
 /* eslint-disable no-param-reassign */
 import type { RenderContext } from '@storybook/types';
 import type { V4FireRenderer } from '../types';
+import type { App } from '@v4fire/client/core/component';
+
+const map = new Map<V4FireRenderer['canvasElement'], App>();
 
 export default async function renderToCanvas(
-  { storyFn, forceRemount, showMain, showException, storyContext }: RenderContext<V4FireRenderer>,
+  { storyFn, showMain, showException }: RenderContext<V4FireRenderer>,
   canvasElement: V4FireRenderer['canvasElement']
 ) {
-  // TODO: handle remounts and re-renders correctly
-  await globalThis.v4fireStorybook.initApp(canvasElement);
+  const existingApp = map.get(canvasElement);
 
-  storyFn(); 
+  if (existingApp) {
+    teardown(existingApp, canvasElement);
+    globalThis.removeCreatedComponents();
+  }
+
+  const app = await globalThis.v4fireStorybook.initApp(canvasElement);
+  map.set(canvasElement, app);
+
+  if (app.context) {
+    app.context.config.errorHandler = (e: unknown) => showException(e as Error);
+  }
+
+  storyFn();
   showMain();
 
-  // TODO: return teardown function
-  return () => {};
+  return () => {
+    teardown(app, canvasElement);
+  };
+}
+
+function teardown(
+  app: App,
+  canvasElement: V4FireRenderer['canvasElement']
+) {
+  app.context?.unmount();
+  map.delete(canvasElement);
 }
