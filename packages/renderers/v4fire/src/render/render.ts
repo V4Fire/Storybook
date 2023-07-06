@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
-import type { RenderContext, ArgsStoryFn } from '@storybook/types';
-import type { V4FireRenderer } from './types';
+import type { ArgsStoryFn } from '@storybook/types';
+import type { V4FireRenderer } from '../types';
 
 const isSlotRegex = /^slot:(.*)$/;
 
-export const render: ArgsStoryFn<V4FireRenderer, Dictionary<any>> = (props, context) => {
+const render: ArgsStoryFn<V4FireRenderer, Dictionary<any>> = (props, context) => {
   const { id, component: componentOrName } = context;
   if (!componentOrName) {
     throw new Error(
@@ -32,17 +32,4 @@ export const render: ArgsStoryFn<V4FireRenderer, Dictionary<any>> = (props, cont
   );
 };
 
-
-export async function renderToCanvas(
-  { storyFn, forceRemount, showMain, showException, storyContext }: RenderContext<V4FireRenderer>,
-  canvasElement: V4FireRenderer['canvasElement']
-) {
-  // TODO: handle remounts and re-renders correctly
-  await globalThis.v4fireStorybook.initApp(canvasElement);
-
-  storyFn(); 
-  showMain();
-
-  // TODO: return teardown function
-  return () => {};
-}
+export default render;
