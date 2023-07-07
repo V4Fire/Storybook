@@ -9,6 +9,11 @@ type BuilderName = '@storybook/builder-webpack5';
 
 export type FrameworkOptions = {
   builder?: BuilderOptions;
+
+  /**
+   * Root component which will be used to render the stories, i.e.: `p-v4-components-demo`
+   */
+  rootComponent: string;
 };
 
 type StorybookConfigFramework = {
