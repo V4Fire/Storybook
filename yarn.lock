@@ -2981,7 +2981,7 @@ __metadata:
 
 "@v4fire/client@git+https://github.com/v4fire/client#st-4697/storybook-prebuild":
   version: 4.0.0-beta.7
-  resolution: "@v4fire/client@https://github.com/v4fire/client.git#commit=227d2f12eb69f7686fac6f23e5f6ca91b89472eb"
+  resolution: "@v4fire/client@https://github.com/v4fire/client.git#commit=d8effc05eaad1d784ce89d9753d53658865d8a82"
   dependencies:
     "@babel/core": 7.17.5
     "@babel/helpers": 7.17.7
@@ -3216,7 +3216,7 @@ __metadata:
       optional: true
     webpack-cli:
       optional: true
-  checksum: 1e7eba1dc2cf6cb4d8ac2b72c30188a3aa3ed2a5c9b5c099fe3dbafd97fc9b5a397f009dc0ccbd235a4e9d36736e2acf805c8bcf329913e33a66fae44d842bff
+  checksum: 13c259e88710dd9ead4e19c0c0bf485cdd63845bee979ec7cd8ab864f2366a45f92158bea4217c036b0495b2461aee59220adcd3eb172241e2e9db7a1b1cd009
   languageName: node
   linkType: hard
 

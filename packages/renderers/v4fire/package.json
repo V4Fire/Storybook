@@ -51,6 +51,7 @@
     "@storybook/global": "^5.0.0",
     "@storybook/preview-api": "7.0.18",
     "@storybook/types": "7.0.18",
+    "@v4fire/storybook-framework-webpack5": "workspace:^",
     "type-fest": "3.11.1"
   },
   "devDependencies": {
