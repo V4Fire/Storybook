@@ -49,10 +49,10 @@ function createOnCompile(this: HtmlWebpackStaticAssetsPlugin) {
 
 function createOnBeforeEmit(this: HtmlWebpackStaticAssetsPlugin) {
   return (data: any, done: (error: unknown, result: any) => void) => {
-    data.html = data.html.replace('</head>', [
+    data.html = data.html.replace('<head>', [
+      '<head>',
       ...this.options.scripts.map((src) => `<script src="${src}"></script>`),
       ...this.options.styles.map((href) => `<link href="${href}" rel="stylesheet" />`),
-      '</head>'
     ].join('\n'));
 
     done(null, data); 
