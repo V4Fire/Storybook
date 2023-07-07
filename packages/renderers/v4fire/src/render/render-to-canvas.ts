@@ -10,13 +10,14 @@ export default async function renderToCanvas(
   canvasElement: V4FireRenderer['canvasElement']
 ) {
   const existingApp = map.get(canvasElement);
+  const {rootComponent} = globalThis.FRAMEWORK_OPTIONS.options;
 
   if (existingApp) {
     teardown(existingApp, canvasElement);
     globalThis.removeCreatedComponents();
   }
 
-  const app = await globalThis.v4fireStorybook.initApp(canvasElement);
+  const app = await globalThis.v4fireStorybook.initApp(canvasElement, rootComponent);
   map.set(canvasElement, app);
 
   if (app.context) {
