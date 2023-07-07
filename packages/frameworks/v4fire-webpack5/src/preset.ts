@@ -1,5 +1,6 @@
 import type { PresetProperty, Options } from '@storybook/types';
 import type { FrameworkOptions, StorybookConfig } from './types';
+import HtmlWebpackStaticAssetsPlugin from './webpack/plugins/html-webpack-static-assets-plugin';
 
 export const core: PresetProperty<'core', StorybookConfig> = {
   builder: '@storybook/builder-webpack5',
@@ -38,7 +39,27 @@ export const frameworkOptions = async (
   };
 };
 
-export const webpackFinal: StorybookConfig['webpackFinal'] = async (config) => {
-  // TODO: apply custom config rules
+export const webpackFinal: StorybookConfig['webpackFinal'] = async (config, options) => {
+  const frameworkOptions: FrameworkOptions = (<any>options).frameworkOptions.options;
+  const {rootComponent} = frameworkOptions;
+
+  config.plugins.push(
+    // @ts-expect-error There is a mismatch between storybook webpack types and original types
+    // but it doesn't affect the build
+    new HtmlWebpackStaticAssetsPlugin({
+      scripts: [
+        '/lib/requestidlecallback.js',
+        '/lib/eventemitter2.js',
+        '/lib/vue.js',
+        '/std.js',
+        `/${rootComponent}_tpl.js`,
+        `/${rootComponent}.js`,
+      ],
+      styles: [
+        `/${rootComponent}_style.css`
+      ]
+    })
+  );
+
   return config;
 };
