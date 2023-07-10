@@ -14,6 +14,33 @@ export type FrameworkOptions = {
    * Root component which will be used to render the stories, i.e.: `p-v4-components-demo`
    */
   rootComponent: string;
+
+  staticAssets: {
+    /**
+     * Prefix for the assets, i.e.: `desktop_`
+     */    
+    prefix?: string;
+
+    /**
+     * Relative source links for additional scripts to add
+     * 
+     * @example
+     * ```js
+     * ['lodash.js']
+     * ```
+     */
+    scripts?: string[];
+
+    /**
+     * Relative source links for additional styles to add
+     * 
+     * @example
+     * ```js
+     * ['normalize.css']
+     * ```
+     */
+    styles?: string[];
+  }
 };
 
 type StorybookConfigFramework = {

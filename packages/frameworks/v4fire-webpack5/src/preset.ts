@@ -9,6 +9,7 @@ export const core: PresetProperty<'core', StorybookConfig> = {
 
 const defaultFrameworkOptions: FrameworkOptions = {
   rootComponent: 'p-v4-components-demo',
+  staticAssets: {},
 }
 
 export const frameworkOptions = async (
@@ -41,23 +42,27 @@ export const frameworkOptions = async (
 
 export const webpackFinal: StorybookConfig['webpackFinal'] = async (config, options) => {
   const frameworkOptions: FrameworkOptions = (<any>options).frameworkOptions.options;
-  const {rootComponent} = frameworkOptions;
-
+  
+  const {rootComponent, staticAssets} = frameworkOptions;
+  const {prefix = '', scripts = [], styles = []} = staticAssets;
+  
   config.plugins.push(
     // @ts-expect-error There is a mismatch between storybook webpack types and original types
     // but it doesn't affect the build
     new HtmlWebpackStaticAssetsPlugin({
       scripts: [
-        '/lib/requestidlecallback.js',
-        '/lib/eventemitter2.js',
-        '/lib/vue.js',
-        '/std.js',
-        `/${rootComponent}_tpl.js`,
-        `/${rootComponent}.js`,
-      ],
-      styles: [
-        `/${rootComponent}_style.css`
-      ]
+        ...scripts.map((src) => `${prefix}${src}`),
+        `${prefix}lib/requestidlecallback.js`,
+        `${prefix}lib/eventemitter2.js`,
+        `${prefix}lib/vue.js`,
+        `${prefix}std.js`,
+        `${prefix}${rootComponent}_tpl.js`,
+        `${prefix}${rootComponent}.js`,
+      ].map((src) => `/${src}`),
+      styles: [,
+        ...styles.map((src) => `${prefix}${src}`),
+        `${prefix}${rootComponent}_style.css`
+      ].map((src) => `/${src}`),
     })
   );
 
