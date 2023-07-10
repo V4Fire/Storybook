@@ -1,5 +1,12 @@
 # V4Fire storybook renderer
 
+This renderer leverages global functions such as `initApp` and `renderComponents`,
+which are exposed by the `@v4fire/client` package.
+
+The rendering functions are defined within the `@v4fire/client` package
+because it utilizes a singleton instance of the custom Vue app during component initialization.
+It is crucial that the same app instance is used throughout the rendering.
+
 ## For developers
 
 ### Building the package
@@ -16,7 +23,7 @@ The type of `createVNode` in `@v4fire/client` is not resolved correctly:
 
 ```
 DTS Build start
-../../../node_modules/@v4fire/client/src/core/component/engines/vue3/render.ts(110,2): error TS4023: Exported variable 'createVNode' has or is using name 'ClassComponent' from external module "/Users/dlartagnan/Documents/Projects/v4fire/Storybook/node_modules/@vue/runtime-core/dist/runtime-core" but cannot be named.
+../../../node_modules/@v4fire/client/src/core/component/engines/vue3/render.ts(110,2): error TS4023: Exported variable 'createVNode' has or is using name 'ClassComponent' from external module "./node_modules/@vue/runtime-core/dist/runtime-core" but cannot be named.
 ../../../node_modules/@v4fire/client/src/core/component/engines/vue3/render.ts(110,2): error TS2527: The inferred type of 'createVNode' references an inaccessible 'unique symbol' type. A type annotation is necessary.
 ```
 
