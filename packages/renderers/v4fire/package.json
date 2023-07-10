@@ -47,8 +47,8 @@
   ],
   "dependencies": {
     "@storybook/global": "^5.0.0",
-    "@storybook/preview-api": "7.0.24",
-    "@storybook/types": "7.0.24",
+    "@storybook/preview-api": "7.0.23",
+    "@storybook/types": "7.0.23",
     "type-fest": "3.11.1"
   },
   "devDependencies": {

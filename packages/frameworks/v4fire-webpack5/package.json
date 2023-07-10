@@ -48,7 +48,7 @@
     "*.d.ts"
   ],
   "dependencies": {
-    "@storybook/builder-webpack5": "7.0.24",
+    "@storybook/builder-webpack5": "7.0.23",
     "html-webpack-plugin": "5.5.0"
   },
   "devDependencies": {
