@@ -40,7 +40,17 @@ export type FrameworkOptions = {
      * ```
      */
     styles?: string[];
-  }
+  };
+
+  /**
+   * Project layers
+   * 
+   * @example
+   * ```js
+   * ['@v4fire/client']
+   * ```
+   */
+  layers?: string[]
 };
 
 type StorybookConfigFramework = {
