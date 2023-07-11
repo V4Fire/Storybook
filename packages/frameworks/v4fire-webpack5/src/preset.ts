@@ -1,11 +1,15 @@
 import type { PresetProperty, Options } from '@storybook/types';
+import type { Configuration } from 'webpack';
+
 import type { FrameworkOptions, StorybookConfig } from './types';
-import HtmlWebpackStaticAssetsPlugin from './webpack/plugins/html-webpack-static-assets-plugin';
+import * as webpack from './webpack';
 
 export const core: PresetProperty<'core', StorybookConfig> = {
   builder: '@storybook/builder-webpack5',
   renderer: '@v4fire/storybook',
 };
+
+export const staticDirs: StorybookConfig['staticDirs'] = ['../dist/storybook'];
 
 const defaultFrameworkOptions: FrameworkOptions = {
   rootComponent: 'p-v4-components-demo',
@@ -42,29 +46,10 @@ export const frameworkOptions = async (
 
 export const webpackFinal: StorybookConfig['webpackFinal'] = async (config, options) => {
   const frameworkOptions: FrameworkOptions = (<any>options).frameworkOptions.options;
-  
-  const {rootComponent, staticAssets} = frameworkOptions;
-  const {prefix = '', scripts = [], styles = []} = staticAssets;
-  
-  config.plugins.push(
-    // @ts-expect-error There is a mismatch between storybook webpack types and original types
-    // but it doesn't affect the build
-    new HtmlWebpackStaticAssetsPlugin({
-      scripts: [
-        ...scripts.map((src) => `${prefix}${src}`),
-        `${prefix}lib/requestidlecallback.js`,
-        `${prefix}lib/eventemitter2.js`,
-        `${prefix}lib/vue.js`,
-        `${prefix}std.js`,
-        `${prefix}${rootComponent}_tpl.js`,
-        `${prefix}${rootComponent}.js`,
-      ].map((src) => `/${src}`),
-      styles: [,
-        ...styles.map((src) => `${prefix}${src}`),
-        `${prefix}${rootComponent}_style.css`
-      ].map((src) => `/${src}`),
-    })
-  );
+ 
+  config.target = 'web';
+  webpack.applyModules(config as unknown as Configuration, frameworkOptions);
+  webpack.applyPlugins(config as unknown as Configuration, frameworkOptions);
 
   return config;
 };
