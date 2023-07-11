@@ -19,8 +19,27 @@
 Follow the prompts after running this command in your V4Fire project's root directory:
 
 ```bash
-npx storybook@latest init --type html
-yarn add @v4fire/storybook-framework-webpack5
+npx storybook@7.0.23 init --type html
+yarn remove @storybook/html @storybook/html-webpack5
+yarn add -E -D @v4fire/storybook-framework-webpack5 @v4fire/storybook
+```
+
+Change all versions to exact in `package.json`.
+
+Check `.storybook` directory, change language of underlying files to javascript if needed.
+
+Rename `.babelrc.json` to `babel.config.js`, and change it's contents to:
+
+```js
+'use strict';
+
+module.exports = {
+	sourceType: 'unambiguous',
+	presets: [
+		['@babel/preset-typescript'],
+		['@babel/preset-env']
+	]
+};
 ```
 
 [More on getting started with Storybook](https://storybook.js.org/docs/react/get-started/install)
