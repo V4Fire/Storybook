@@ -17,6 +17,8 @@ import type { V4FireRenderer } from './types';
 export type { Args, ArgTypes, Parameters, StrictArgs } from '@storybook/types';
 export type { V4FireRenderer };
 
+type SlotArgs = { [key: `slot-${string}`]: string };
+
 /**
  * Metadata to configure the stories for a component.
  *
@@ -56,10 +58,10 @@ export type StoryObj<TMetaOrCmpOrArgs = Args> = TMetaOrCmpOrArgs extends {
         SetOptional<TArgs, Extract<keyof TArgs, keyof DefaultArgs>>
       >
     : never
-  : StoryAnnotations<V4FireRenderer, TMetaOrCmpOrArgs>;
+  : StoryAnnotations<V4FireRenderer, TMetaOrCmpOrArgs & SlotArgs>;
 
 // FIXME: currently it's impossible to extract prop types from the component
-export type ComponentProps<C> = C extends Constructor<{ $props: infer P }> ? P : C; 
+export type ComponentProps<C> = (C extends Constructor<{ $props: infer P }> ? P : C) & SlotArgs; 
 
 export type Decorator<TArgs = StrictArgs> = DecoratorFunction<V4FireRenderer, TArgs>;
 export type Loader<TArgs = StrictArgs> = LoaderFunction<V4FireRenderer, TArgs>;
