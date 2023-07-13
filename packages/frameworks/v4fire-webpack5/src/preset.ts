@@ -1,8 +1,9 @@
-import type { PresetProperty, Options } from '@storybook/types';
+import type { PresetProperty, Options, StoryIndexer } from '@storybook/types';
 import type { Configuration } from 'webpack';
 
 import type { FrameworkOptions, StorybookConfig } from './types';
 import * as webpack from './webpack';
+import { basename } from './utils';
 
 export const core: PresetProperty<'core', StorybookConfig> = {
   builder: '@storybook/builder-webpack5',
@@ -52,4 +53,38 @@ export const webpackFinal: StorybookConfig['webpackFinal'] = async (config, opti
   webpack.applyPlugins(config as unknown as Configuration, frameworkOptions);
 
   return config;
+};
+
+export const storyIndexers = async (indexers?: StoryIndexer[]) => {
+  const csfIndexer = indexers
+    .find((indexer) => indexer.test.toString() === '/(stories|story)\\.[tj]sx?$/');
+  
+  if (csfIndexer) {
+    // Override default csfIndexer to prevent duplicate errors.
+    // This is useful for component story overriding in the child layers of the app.
+    const cache = new Map<string, string>(); 
+    const originalIndexer = csfIndexer.indexer;
+
+    // It is expected that the final override will be passed to indexer first
+    // i.e.: src/button.stories.js, node_modules/layer-1/button.stories.js
+    // `src/button.stories.js` is the final override
+    csfIndexer.indexer = async (fileName, opts) => {
+      const name = basename(fileName);
+      const existing = cache.get(name);
+
+      if (existing != null && existing !== fileName) {
+        return {
+          meta: {},
+          stories: []
+        };
+      }
+
+      cache.set(name, fileName);
+      return originalIndexer(fileName, opts);
+    }
+  } else {
+    console.warn('Failed to patch `csfIndexer`. Story overrides will lead to duplicate errors.')
+  }
+
+  return indexers;
 };

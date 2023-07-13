@@ -1,4 +1,6 @@
 import type { Configuration } from 'webpack';
+import path from 'path';
+
 import { layersToRegex } from '../../utils';
 
 /**
@@ -9,6 +11,10 @@ import { layersToRegex } from '../../utils';
  */
 export function modifyForLayers(config: Configuration, layers: string[]): void {
   const layersRegex = layersToRegex(layers);
+
+  layers.forEach((layer) => {
+    config.resolve.alias[layer] = path.resolve(process.cwd(), 'node_modules', ...layer.split('/'), 'src');
+  });
 
   config.module?.rules?.forEach((rule) => {
     if (typeof rule !== 'object') {
