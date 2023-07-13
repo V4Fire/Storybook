@@ -11,12 +11,11 @@ build({
   clean: true,
   outDir: 'dist',
   format: ['esm'],
-  target: 'chrome100',
-  platform: 'browser',
+  platform: 'node',
   external,
   esbuildOptions: (c) => {
     c.conditions = ['module'];
-    c.platform = 'browser';
+    c.platform = 'node';
   },
   dts: true,
   outExtension() {
