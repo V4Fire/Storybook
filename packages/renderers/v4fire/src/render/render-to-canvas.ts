@@ -17,7 +17,7 @@ export default async function renderToCanvas(
     globalThis.removeCreatedComponents();
   }
 
-  const app = await globalThis.v4fireStorybook.initApp(canvasElement, rootComponent);
+  const app = await globalThis.V4Storybook.initApp(canvasElement, rootComponent);
   map.set(canvasElement, app);
 
   if (app.context) {
