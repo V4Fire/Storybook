@@ -47,6 +47,7 @@
     "*.d.ts"
   ],
   "dependencies": {
+    "@storybook/blocks": "7.0.23",
     "@storybook/global": "^5.0.0",
     "@storybook/preview-api": "7.0.23",
     "@storybook/types": "7.0.23",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.0",
+    "@types/react": "17.0.62",
     "@types/webpack-env": "1.18.1",
     "@v4fire/client": "git+https://github.com/v4fire/client#st-4697/storybook-prebuild",
     "@v4fire/core": "^4.0.0-alpha.4",

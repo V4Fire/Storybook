@@ -3,7 +3,7 @@ import { build } from 'tsup';
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 const { devDependencies, dependencies } = packageJson;
-const external = [...Object.keys({ ...devDependencies, ...dependencies })];
+const external = [...Object.keys({ ...devDependencies, ...dependencies }), 'react'];
 const entry = ['src/config.ts', 'src/index.ts'];
 
 build({
