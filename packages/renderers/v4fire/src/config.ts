@@ -1,4 +1,4 @@
-import { DocsPage } from './components/DocsPage';
+import { DocsPage } from './components/docs-page';
 
 export const parameters: {} = {
   renderer: 'v4fire' as const,
