@@ -11,10 +11,17 @@ import { layersToRegex } from '../../utils';
  */
 export function modifyForLayers(config: Configuration, layers: string[]): void {
   const layersRegex = layersToRegex(layers);
+  const resolveLayerSrc = (layer: string) => path.resolve(process.cwd(), 'node_modules', ...layer.split('/'), 'src');
 
   layers.forEach((layer) => {
-    config.resolve.alias[layer] = path.resolve(process.cwd(), 'node_modules', ...layer.split('/'), 'src');
+    config.resolve.alias[layer] = resolveLayerSrc(layer); 
   });
+
+  config.resolve.modules = [
+    path.resolve(process.cwd(), 'src'),
+    ...layers.map(resolveLayerSrc),
+    ...config.resolve.modules,
+  ];
 
   config.module?.rules?.forEach((rule) => {
     if (typeof rule !== 'object') {
