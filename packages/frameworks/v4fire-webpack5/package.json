@@ -1,7 +1,7 @@
 {
   "name": "@v4fire/storybook-framework-webpack5",
   "type": "module",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Storybook framework for the V4Fire with webpack5 builder",
   "scripts": {
     "check": "tsc --noEmit",

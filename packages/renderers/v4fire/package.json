@@ -1,6 +1,6 @@
 {
   "name": "@v4fire/storybook",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "type": "module",
   "description": "Storybook V4Fire renderer",
   "scripts": {
